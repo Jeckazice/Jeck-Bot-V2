@@ -35,7 +35,7 @@ module.exports = {
 		},
 		en: {
 			missingMessage: "📥 Maitre veillez saisir le messages qui sera distribuée à tout les groupes📨",
-			notification: "══════ ⋆★⋆ ══════                           𝖀𝖓 𝖈𝖔𝖚𝖗𝖗𝖎𝖊𝖗 𝖊́𝖑𝖊𝖈𝖙𝖗𝖔𝖓𝖎𝖖𝖚𝖊 𝖆 𝖊́𝖙𝖊́ 𝖊𝖓𝖛𝖔𝖞𝖊́ 𝖕𝖆𝖗 𝖑'𝖆𝖉𝖒𝖎𝖓 𝖉𝖚 𝖇𝖔𝖙 📬 (𝕽𝖊́𝖕𝖔𝖓𝖉𝖊𝖟 𝖆̀ 𝖑'𝖆𝖉𝖒𝖎𝖓 📨 𝖊𝖓 𝖚𝖙𝖎𝖑𝖎𝖘𝖆𝖓𝖙  𝖑𝖆 𝖈𝖒𝖉 @𝖈𝖆𝖑𝖑𝖆𝖉)     ══════ ⋆★⋆══════",
+			notification: "════════════                           🌺𝖀𝖓 𝖈𝖔𝖚𝖗𝖗𝖎𝖊𝖗 𝖊́𝖑𝖊𝖈𝖙𝖗𝖔𝖓𝖎𝖖𝖚𝖊 𝖆 𝖊́𝖙𝖊́ 𝖊𝖓𝖛𝖔𝖞𝖊́ 𝖕𝖆𝖗 𝖑'𝖆𝖉𝖒𝖎𝖓 𝖉𝖚 𝖇𝖔𝖙 📬 (❤️‍🩹𝕽𝖊́𝖕𝖔𝖓𝖉𝖊𝖟 𝖆̀ 𝖑'𝖆𝖉𝖒𝖎𝖓 📨 𝖊𝖓 𝖚𝖙𝖎𝖑𝖎𝖘𝖆𝖓𝖙  𝖑𝖆 𝖈𝖒𝖉 #𝖈𝖆𝖑𝖑𝖆𝖉)     ════════════",
 			sendingNotification: "✅📬Début de l' envoie de votre Message à %1 groupes ",
 			sentNotification: "✅ Maître le message à était envoyé dans %1 groupes 🚀",
 			errorSendingNotification: "🚨 Maître j' ai rencontré des problèmes en route avec  %1 groupes:\n%2"
