@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "         [😼 |ʚʆɞ Joël ʚʆɞ ]\n      ";
+const doNotDelete = "         [🌺 |ʚʆɞ jeck.azice ʚʆɞ ]\n      ";
 const characters = "━━━━━━━━━━━━━━━";
 /** 
 * @author NTKhang
