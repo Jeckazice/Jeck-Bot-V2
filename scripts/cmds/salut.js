@@ -15,6 +15,6 @@ onChat: async function({
     message,
     getLang
 }) {
-    if (event.body && event.body.toLowerCase() == "salut") return message.reply("🌺𝗦𝗮𝗹𝘂𝘁, 𝒄𝒐𝒎𝒎𝒆𝒏𝒕 𝒕𝒖 𝒗𝒂𝒔? 𝗺𝗼𝗶 𝗰'𝗲𝘀𝘁 Zen.Bot 👨‍💻 𝒒𝒖'𝒆𝒔 𝒄𝒆 𝒒𝒖𝒆 𝒋𝒆 𝒑𝒆𝒖𝒙 𝒇𝒂𝒊𝒓𝒆 𝒑𝒐𝒖𝒓 𝒕𝒐𝒊 ?");
+    if (event.body && event.body.toLowerCase() == "salut") return message.reply("🤨𝗦𝗮𝗹𝘂𝘁, 𝒄𝒐𝒎𝒎𝒆𝒏𝒕 𝒕𝒖 𝒗𝒂𝒔? 𝗺𝗼𝗶 𝗰'𝗲𝘀𝘁 Troll.Bot 👨‍💻 𝒒𝒖'𝒆𝒔 𝒄𝒆 𝒒𝒖𝒆 𝒋𝒆 𝒑𝒆𝒖𝒙 𝒇𝒂𝒊𝒓𝒆 𝒑𝒐𝒖𝒓 𝒕𝒐𝒊 ?");
 }
 };
