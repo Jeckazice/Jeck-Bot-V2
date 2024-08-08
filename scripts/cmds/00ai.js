@@ -1,50 +1,72 @@
-const axios = require('axios');
+ const axios = require('axios');
 
 const Prefixes = [
-  '#ai',
-  'bot',
-  'ia',
-  '/ai',
-  'zen',
   'ai',
   'ask',
+  'tk',
+  'syvia',
+  '#ai', // put here your AI names
 ];
+
+
+async function fetchFromAI(url, params) {
+  try {
+    const response = await axios.get(url, { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+async function getAIResponse(input, userId, messageID) {
+  const services = [
+    { url: 'https://ai-tools.replit.app/gpt', params: { prompt: input, uid: userId } },
+    { url: 'https://openaikey-x20f.onrender.com/api', params: { prompt: input } },
+    { url: 'http://fi1.bot-hosting.net:6518/gpt', params: { query: input } },
+    { url: 'https://ai-chat-gpt-4-lite.onrender.com/api/hercai', params: { question: input } }
+  ];
+
+  let response = "🎯 𝑆𝑎𝑙𝑢𝑡 , 𝑚𝑜𝑖 𝑐' 𝑒𝑠𝑡 🌺𝗦𝘆𝗹𝘃𝗶𝗮 𝐈𝐀 𝑃𝑟𝑜𝑔𝑟𝑎𝑚𝑚𝑒𝑟 𝑝𝑜𝑢𝑟 𝑟𝑒́𝑝𝑜𝑛𝑑𝑟𝑒 𝑎̀ 𝑡𝑒𝑠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧 ❓. 𝑈𝑡𝑖𝑙𝑖𝑠𝑒 𝑙𝑎 𝐂𝐦𝐝 #sylviagc 𝑝𝑜𝑢𝑟 𝑑𝑒́𝑐𝑜𝑢𝑣𝑟𝑖𝑟 𝑡𝑜𝑢𝑡 𝑚𝑒𝑠 𝑡𝑎𝑙𝑒𝑛𝑡𝑠 😼.";
+  let currentIndex = 0;
+
+  for (let i = 0; i < services.length; i++) {
+    const service = services[currentIndex];
+    const data = await fetchFromAI(service.url, service.params);
+    if (data && (data.gpt4 || data.reply || data.response)) {
+      response = data.gpt4 || data.reply || data.response;
+      break;
+    }
+    currentIndex = (currentIndex + 1) % services.length; // Move to the next service in the cycle
+  }
+
+  return { response, messageID };
+}
 
 module.exports = {
   config: {
-    name: "ask",
-    version: 1.0,
-    author: "OtinXSandip",
-    longDescription: "AI",
-    category: "ai",
-    guide: {
-      en: "{p} questions",
-    },
+    name: 'ai',
+    author: 'Arn',
+    role: 0,
+    category: 'ai',
+    shortDescription: 'ai to ask anything',
   },
-  onStart: async function () {},
-  onChat: async function ({ api, event, args, message }) {
-    try {
-      
-      const prefix = Prefixes.find((p) => event.body && event.body.toLowerCase().startsWith(p));
-      if (!prefix) {
-        return; // Invalid prefix, ignore the command
-      }
-      const prompt = event.body.substring(prefix.length).trim();
-   if (!prompt) {
-        await message.reply("Veuillez poser la question à votre convenance et je m'efforcerai de vous fournir une réponse efficace🤓. Votre satisfaction est ma priorité absolue😼. (𝙀́𝙙𝙞𝙩 𝙗𝙮 𝙏𝙠 𝙅𝙤𝙚𝙡 ㋡");
-        return;
-      }
+  onStart: async function ({ api, event, args }) {
+    const input = args.join(' ').trim();
+    if (!input) {
+      api.sendMessage(`🌺𝗦𝘆𝗹𝘃𝗶𝗮 𝗔𝗦𝗦𝗜𝗦𝗧𝗔𝗡𝗧 ✅\n━━━━━━━━━━━━━━━━\nPlease provide a question or statement.\n━━━━━━━━━━━━━━━━`, event.threadID, event.messageID);
+      return;
+    }
 
-await message.reply("💬🧘🏾‍♂|veillez Patientez s'il-vous-plait...(𝙀́𝙙𝙞𝙩 𝙗𝙮 𝙏𝙠 𝙅𝙤𝙚𝙡 ㋡)");
-
-      const response = await axios.get(`https://sandipbaruwal.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
-      const answer = response.data.answer;
-
- 
-    await message.reply(answer);
-
-    } catch (error) {
-      console.error("Error:", error.message);
+    const { response, messageID } = await getAIResponse(input, event.senderID, event.messageID);
+    api.sendMessage(`🌺𝗦𝘆𝗹𝘃𝗶𝗮 𝗔𝗦𝗦𝗜𝗦𝗧𝗔𝗡𝗧 \n━━━━━━━━━━━━━━━━\n${response}\n━━━━━━━━━━━━━━━━`, event.threadID, messageID);
+  },
+  onChat: async function ({ event, message }) {
+    const messageContent = event.body.trim().toLowerCase();
+    if (messageContent.startsWith("ai", "troll")) {
+      const input = messageContent.replace(/^ai\s*/, "").trim();
+      const { response, messageID } = await getAIResponse(input, event.senderID, message.messageID);
+      message.reply(`🌺𝗦𝘆𝗹𝘃𝗶𝗮 𝗔𝗦𝗦𝗜𝗦𝗧𝗔𝗡𝗧\n━━━━━━━━━━━━━━━━\n${response}\n━━━━━━━━━━━━━━━━`, messageID);
     }
   }
 };
